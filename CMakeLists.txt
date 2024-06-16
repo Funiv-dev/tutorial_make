@@ -5,6 +5,12 @@ project(Tutorial VERSION 1.0)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_executable(tutorial_make tutorial.cxx)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GTK REQUIRED gtk4)
 
-target_include_directories(tutorial_make PUBLIC "${PROJECT_BINARY_DIR}")
+include_directories(${GTK_INCLUDE_DIRS})
+link_directories(${GTK_LIBRARY_DIRS})
+
+add_executable(tutorial_make DialogMain.cpp)
+
+target_link_libraries(tutorial_make ${GTK_LIBRARIES})
