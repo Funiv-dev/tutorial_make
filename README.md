@@ -1,5 +1,42 @@
 # Wow make
 
+## Windows
+```
+# package update
+pacman -Syu
+
+# install Windows
+pacman -S mingw-w64-x86_64-gtk4
+pacman -S mingw-w64-x86_64-pkgconf
+pacman -S mingw-w64-x86_64-cmake
+pacman -S mingw-w64-x86_64-gdb
+
+# open Msys2 console > .bashrc
+echo 'export PKG_CONFIG_PATH=/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig' >> ~/.bashrc
+echo 'export PATH=$PATH:/mingw64/bin' >> ~/.bashrc
+source ~/.bashrc
+
+# Clion move to ADD 'File > Settings > Build, Execution, Deployment > Cmake > Environments'
+PKG_CONFIG_PATH=C:/msys64/mingw64/lib/pkgconfig;C:/msys64/mingw64/share/pkgconfig
+PATH=C:/msys64/mingw64/bin;%PATH%
+
+C드라이브로 나타났지만 경로에 맞게 수정하고 환경변수에 해당 내용을 등록한다.
+
+# Clion Add 'File > Settings > Build, Execution, Deployment > Cmake > CMake Options'
+-G Ninja
+
+# debug
+cd /path/to/your/project/cmake-build-debug
+gdb ./tutorial_make.exe
+
+(gdb) run
+(gdb) break main
+(gdb) run
+(gdb) step
+```
+
+
+## Mac OS
 ### gtk 3, 4 install
 ```shell
 brew install gtk4
